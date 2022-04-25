@@ -24,6 +24,9 @@ describe('header', () => {
 
         const alt = screen.getByAltText('Alchemy Logo');
 
+        const profileName = await screen.findByText('Vonta');
+
         expect(alt).toBeInTheDocument();
+        expect(profileName).toBeInTheDocument();
     });   
 });
