@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Header from './components/layout/Header';
-import App from './App';
 
 const user = {
     id: 1,
