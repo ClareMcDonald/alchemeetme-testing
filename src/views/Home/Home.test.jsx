@@ -1,3 +1,6 @@
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import Profile from '../../components/Profile/Profile';
 
 const user = {
   id: 1,
@@ -10,6 +13,26 @@ const user = {
   color: 'crimson',
 }
 
-test('Should render the user profile', () => {
+describe('profile', () => {
+  test('Should render the user profile', async () => {
+    render(
+      <MemoryRouter>
+        <Profile user={user} />
+      </MemoryRouter>
+    );
+    
+    const name = await screen.findByText('Vonta');
+    const motto = await screen.findByText('Res Non Verba');
+    const interestsHeading = await screen.findByText('Interests');
+    const avatar = await screen.findByAltText('avatar');
+    const headerImg = screen.getByAltText('header')
+    const likes = screen.getByRole('ul');
 
-})
+    expect(name.textContent).toBe('Vonta');
+    expect(motto).toBeInTheDocument();
+    expect(interestsHeading).toBeInTheDocument();
+    expect(avatar).toBeInTheDocument();
+    expect(headerImg).toBeInTheDocument();
+    expect(likes).toContain('Anime');
+  });
+});
