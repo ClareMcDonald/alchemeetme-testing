@@ -26,13 +26,13 @@ describe('profile', () => {
     const interestsHeading = await screen.findByText('Interests');
     const avatar = await screen.findByAltText('avatar');
     const headerImg = screen.getByAltText('header')
-    const likes = screen.getByRole('ul');
+    const likes = screen.getAllByRole('li');
 
     expect(name.textContent).toBe('Vonta');
     expect(motto).toBeInTheDocument();
     expect(interestsHeading).toBeInTheDocument();
     expect(avatar).toBeInTheDocument();
     expect(headerImg).toBeInTheDocument();
-    expect(likes).toContain('Anime');
+    expect((likes).length).toEqual(6);
   });
 });
